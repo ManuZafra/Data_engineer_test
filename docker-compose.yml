@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  script_runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  db:
+    image: python:3.9-slim  # Usamos esta imagen porque incluye SQLite y soporta arm64
+    command: "tail -f /dev/null, sqlite3 /data/sales.db" # Mantiene el contenedor vivo
+    volumes:
+      - ./data:/app/data
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
