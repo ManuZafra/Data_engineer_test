@@ -12,8 +12,8 @@ services:
       - app-network
 
   db:
-    image: python:3.9-slim  # Usamos esta imagen porque incluye SQLite y soporta arm64
-    command: "tail -f /dev/null, sqlite3 /data/sales.db" # Mantiene el contenedor vivo
+    image: python:3.9-slim
+    command: tail -f /dev/null  # Sin comillas, más limpio
     volumes:
       - ./data:/app/data
     networks:
