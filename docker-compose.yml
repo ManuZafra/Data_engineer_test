@@ -13,7 +13,7 @@ services:
 
   db:
     image: python:3.9-slim
-    command: tail -f /dev/null  # Sin comillas, más limpio
+    command: tail -f /dev/null
     volumes:
       - ./data:/app/data
     networks:
